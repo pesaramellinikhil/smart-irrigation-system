@@ -53,9 +53,9 @@ def home():
     if request.method == "POST":
         soil = request.form["soil"].lower()
         crop = request.form["crop"].lower()
-        city = request.form["city"]
+        village = request.form["village"]
 
-        weather_data = get_weather(city)
+        weather_data = get_weather(village)
         temperature = extract_temperature(weather_data)
         condition = get_condition(weather_data)
 
@@ -70,7 +70,7 @@ def home():
         result = f"""
         🌱 Smart Irrigation Recommendation<br><br>
 
-        📍 City: {city}<br>
+        📍 Village: {village}<br>
         🌦 Weather: {condition}<br>
         🌡 Temperature: {temperature}°C<br><br>
 
@@ -78,7 +78,7 @@ def home():
         """
 
         history.append({
-            "city": city,
+            "village": village,
             "soil": soil.capitalize(),
             "crop": crop.capitalize(),
             "temperature": temperature,
